@@ -16,7 +16,7 @@ updates:
           - "minor"
           - "patch"
       prod:
-        dependency-type: "devDependencies
+        dependency-type: "devDependencies"
         update-types:
           - "minor"
           - "patch"
