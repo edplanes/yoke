@@ -1,0 +1,53 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav
+    #drawer
+    class="sidenav"
+    [ngClass]="{ hidden: !(isHandset | async) }"
+    [attr.role]="(isHandset | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset | async) ? 'over' : 'side'"
+    [opened]="!(isHandset | async)"
+  >
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list>
+      @for (item of routes; track $index) {
+      <a
+        mat-list-item
+        [routerLink]="item.link"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: false }"
+      >
+        {{ item.title }}
+      </a>
+      }
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      @if (isHandset | async) {
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+      >
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      }
+      <img src="logo.png" alt="Yoke logo" width="40rem" />
+      <span>Yoke</span>
+
+      @if (!(isHandset | async)) { @for (item of routes; track $index) {
+      <a
+        mat-button
+        [routerLink]="item.link"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: false }"
+      >
+        {{ item.title }}
+      </a>
+      } }
+      <span class="spacer"></span>
+    </mat-toolbar>
+    <ng-content></ng-content>
+  </mat-sidenav-content>
+</mat-sidenav-container>
