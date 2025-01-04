@@ -10,36 +10,32 @@
           "style": "scss"
         }
       },
-      "root": "",
-      "sourceRoot": "src",
+      "root": "projects/yoke",
+      "sourceRoot": "projects/yoke/src",
       "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
             "outputPath": "dist/yoke",
-            "index": "src/index.html",
-            "browser": "src/main.ts",
+            "index": "projects/yoke/src/index.html",
+            "browser": "projects/yoke/src/main.ts",
             "polyfills": [
               "zone.js"
             ],
-            "tsConfig": "tsconfig.app.json",
+            "tsConfig": "projects/yoke/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public"
+                "input": "projects/yoke/public"
               }
             ],
             "styles": [
-              "src/styles.scss"
+              "@angular/material/prebuilt-themes/cyan-orange.css",
+              "projects/yoke/src/styles.scss"
             ],
-            "scripts": [],
-            "server": "src/main.server.ts",
-            "outputMode": "server",
-            "ssr": {
-              "entry": "src/server.ts"
-            }
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -62,13 +58,7 @@
               "extractLicenses": false,
               "sourceMap": true
             },
-            "electron": {
-              "ssr": false,
-              "outputMode": "static",
-              "outputPath": {
-                "base": "dist",
-                "browser": "."
-              },
+            "electron-prod": {
               "budgets": [
                 {
                   "type": "initial",
@@ -81,7 +71,13 @@
                   "maximumError": "8kB"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "baseHref": "./"
+            },
+            "electron": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
             }
           },
           "defaultConfiguration": "production"
@@ -108,16 +104,17 @@
               "zone.js",
               "zone.js/testing"
             ],
-            "tsConfig": "tsconfig.spec.json",
+            "tsConfig": "projects/yoke/tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public"
+                "input": "projects/yoke/public"
               }
             ],
             "styles": [
-              "src/styles.scss"
+              "@angular/material/prebuilt-themes/cyan-orange.css",
+              "projects/yoke/src/styles.scss"
             ],
             "scripts": []
           }
