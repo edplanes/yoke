@@ -1,0 +1,28 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    groups:
+      angular:
+        patterns:
+          - "@angular/*"
+          - "angular"
+      prod:
+        dependency-type: "production"
+      dev:
+        dependency-type: "development"
+        exclude-patterns:
+          - "@angular/*"
+          - "angular"
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "daily"
+
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "daily"

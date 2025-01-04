@@ -1,0 +1,24 @@
+name: PR Unit Tests
+run-name: pull-unit-tests
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened, ready_for_review]
+    paths:
+      - ".github/workflows/pull-unit-tests.yml"
+      - "package.json"
+      - "projects/**"
+    
+jobs:
+  unit-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Collect Workflow Telemetry
+        uses: catchpoint/workflow-telemetry-action@v2
+      - uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+      - name: Setup Yoke
+        run: npm ci
+      - name: Run Yoke Unit Tests
+        run: npm run web:test
