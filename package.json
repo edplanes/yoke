@@ -21,7 +21,8 @@
     "prepare": "husky",
     "start": "electron-forge start",
     "package": "electron-forge package",
-    "make": "electron-forge make"
+    "make": "electron-forge make",
+    "test": "jest"
   },
   "commitlint": {
     "extends": [
@@ -64,18 +65,14 @@
     "@electron-forge/publisher-github": "^7.6.0",
     "@electron/fuses": "^1.8.0",
     "@types/express": "^4.17.17",
-    "@types/jasmine": "~5.1.0",
+    "@types/jest": "^29.5.14",
     "@types/node": "^18.18.0",
     "autoprefixer": "^10.4.20",
     "concurrently": "^9.1.2",
     "electron": "^33.2.1",
     "husky": "^9.1.7",
-    "jasmine-core": "~5.4.0",
-    "karma": "~6.4.0",
-    "karma-chrome-launcher": "~3.2.0",
-    "karma-coverage": "~2.2.0",
-    "karma-jasmine": "~5.1.0",
-    "karma-jasmine-html-reporter": "~2.1.0",
+    "jest": "^29.7.0",
+    "jest-preset-angular": "^14.4.2",
     "postcss": "^8.4.49",
     "tailwindcss": "^3.4.17",
     "ts-loader": "^9.5.1",

@@ -21,7 +21,9 @@ jobs:
       - uses: actions/checkout@v4
       - name: Setup Node.js
         uses: actions/setup-node@v4
+        with:
+          node-version: '22'
       - name: Setup Yoke
         run: npm i
       - name: Run Yoke Unit Tests
-        run: npm run web:test
+        run: npm run web:test -- --browsers=ChromeHeadless --no-watch --no-progress
