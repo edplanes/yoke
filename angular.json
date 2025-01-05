@@ -64,6 +64,12 @@
               "sourceMap": true
             },
             "electron-prod": {
+              "ssr": false,
+              "outputPath": {
+                "browser": "",
+                "base": "dist/yoke",
+                "server": ""
+              },
               "budgets": [
                 {
                   "type": "initial",
@@ -80,6 +86,12 @@
               "baseHref": "./"
             },
             "electron": {
+              "outputPath": {
+                "browser": "",
+                "base": "dist/yoke",
+                "server": ""
+              },
+              "ssr": false,
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true
