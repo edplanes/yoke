@@ -23,3 +23,7 @@
 .spacer {
   flex: 1 1 auto;
 }
+
+.sidenav-container .mat-toolbar .draggable {
+  -webkit-app-region: drag;
+}

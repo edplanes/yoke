@@ -1,9 +1,34 @@
-import { app, BrowserWindow } from "electron";
+import { app, autoUpdater, BrowserWindow, dialog, FeedURLOptions, MessageBoxOptions } from "electron";
 import path from 'path';
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require("electron-squirrel-startup")) {
   app.quit();
+}
+
+if (app.isPackaged) {
+  const server = 'https://update.electronjs.org'
+  const feed = {
+    url: `${server}/edplanes/yoke/${process.arch}/${app.getVersion()}`
+  }
+
+  autoUpdater.setFeedURL(feed)
+
+  autoUpdater.checkForUpdates()
+
+  autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
+   const dialogOpts: MessageBoxOptions = {
+      type: 'info',
+      buttons: ['Restart', 'Later'],
+      title: 'Application Update',
+      message: process.platform === 'win32' ? releaseNotes : releaseName,
+      detail: 'A new version has been downloaded. Restart the application to apply the updates.'
+   }
+
+   dialog.showMessageBox(dialogOpts).then((returnValue) => {
+      if (returnValue.response === 0) autoUpdater.quitAndInstall()
+    })
+  })
 }
 
 

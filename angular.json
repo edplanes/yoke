@@ -35,7 +35,12 @@
               "@angular/material/prebuilt-themes/cyan-orange.css",
               "projects/yoke/src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "server": "projects/yoke/src/main.server.ts",
+            "prerender": true,
+            "ssr": {
+              "entry": "projects/yoke/src/server.ts"
+            }
           },
           "configurations": {
             "production": {
