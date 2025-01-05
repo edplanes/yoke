@@ -22,7 +22,7 @@ jobs:
             { name: 'windows', image: 'windows-latest' }
           ]
 
-    runs-on: ${{ matrix.os.name }}
+    runs-on: ${{ matrix.os.image }}
     steps:
       - name: Collect Workflow Telemetry
         uses: catchpoint/workflow-telemetry-action@v2
