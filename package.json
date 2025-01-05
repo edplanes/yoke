@@ -6,6 +6,12 @@
     "type": "github",
     "url": "https://github.com/edplanes/yoke.git"
   },
+  "author": {
+    "name": "EdPlanes",
+    "email": "admin@edplanes.com"
+  },
+  "license": "MIT",
+  "description": "Yoke is a powerful tool to manage your virtual airlines.",
   "scripts": {
     "ng": "ng",
     "app:build": "tsc --project projects/electron/tsconfig.json",
