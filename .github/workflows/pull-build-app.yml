@@ -1,0 +1,45 @@
+name: PR Build App
+run-name: pull-build-app
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened, ready_for_review]
+    paths:
+      - ".github/workflows/pull-build-app.yml"
+      - "package.json"
+      - "package-lock.json"
+      - "projects/**"
+      - "angular.json"
+      - "tsconfig.json"
+
+jobs:
+  build-app:
+    strategy:
+      matrix:
+        os:
+          [
+            { name: 'linux', image: 'ubuntu-latest' },
+            { name: 'windows', image: 'windows-latest' }
+          ]
+
+    runs-on: ${{ matrix.os.name }}
+    steps:
+      - name: Collect Workflow Telemetry
+        uses: catchpoint/workflow-telemetry-action@v2
+
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+
+      - name: Setup Yoke
+        run: npm ci
+
+      - name: Build Yoke App
+        run: npm run app:make
+
+      - name: Upload Build Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          path: out/make/**/*
+          name: yoke-app-build-${{ matrix.os.name }}

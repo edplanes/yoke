@@ -2,19 +2,26 @@
   "name": "yoke",
   "version": "0.0.0",
   "main": "dist/index.js",
+  "repository": {
+    "type": "github",
+    "url": "https://github.com/edplanes/yoke.git"
+  },
   "scripts": {
     "ng": "ng",
     "app:build": "tsc --project projects/electron/tsconfig.json",
     "app:start": "concurrently \"npm run app:build\" \"npm run web:start\" \"wait-on http://localhost:4200  && electron-forge start -- --no-sandbox\"",
-    "app:package": "npm run app:build && web:build && electron-forge package",
-    "app:make": "npm run app:build && web:build && electron-forge make",
-    "app:publish": "npm run app:build && web:build && electron-forge publish",
+    "app:package": "npm run app:build && npm run web:build && electron-forge package",
+    "app:make": "npm run app:build && npm run web:build && electron-forge make",
+    "app:publish": "npm run app:build && npm run web:build && electron-forge publish",
     "web:start": "ng serve",
     "web:build": "ng build",
     "web:watch": "ng build --watch --configuration development",
     "web:test": "ng test",
     "serve:ssr:yoke": "node dist/yoke/server/server.mjs",
-    "prepare": "husky"
+    "prepare": "husky",
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
   },
   "commitlint": {
     "extends": [
@@ -35,7 +42,6 @@
     "@angular/platform-server": "^19.0.0",
     "@angular/router": "^19.0.0",
     "@angular/ssr": "^19.0.6",
-    "@electron-forge/plugin-auto-unpack-natives": "^7.6.0",
     "electron-squirrel-startup": "^1.0.1",
     "express": "^4.18.2",
     "ngx-electronyzer": "^19.0.0",
@@ -51,8 +57,14 @@
     "@commitlint/cli": "^19.6.1",
     "@commitlint/config-conventional": "^19.6.0",
     "@electron-forge/cli": "^7.6.0",
+    "@electron-forge/maker-deb": "^7.6.0",
+    "@electron-forge/maker-rpm": "^7.6.0",
     "@electron-forge/maker-squirrel": "^7.6.0",
+    "@electron-forge/maker-zip": "^7.6.0",
+    "@electron-forge/plugin-auto-unpack-natives": "^7.6.0",
+    "@electron-forge/plugin-fuses": "^7.6.0",
     "@electron-forge/publisher-github": "^7.6.0",
+    "@electron/fuses": "^1.8.0",
     "@types/express": "^4.17.17",
     "@types/jasmine": "~5.1.0",
     "@types/node": "^18.18.0",
