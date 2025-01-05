@@ -49,4 +49,11 @@ describe('NavComponent', () => {
   it('should have routes defined', () => {
     expect(component.routes.length).toBeGreaterThan(0);
   });
-})
+
+  it('should observe tablet breakpoint', (done) => {
+    component.isTablet.subscribe(isTablet => {
+      expect(isTablet).toBe(true);
+      done();
+    });
+  });
+});

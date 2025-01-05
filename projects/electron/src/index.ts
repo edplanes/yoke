@@ -1,4 +1,4 @@
-import { app, autoUpdater, BrowserWindow, dialog, FeedURLOptions, MessageBoxOptions } from "electron";
+import { app, autoUpdater, BrowserWindow, dialog, FeedURLOptions, ipcMain, MessageBoxOptions } from "electron";
 import path from 'path';
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
@@ -39,6 +39,7 @@ const createWindow = (): void => {
   mainWindow = new BrowserWindow({
     height: 600,
     width: 800,
+    frame: false,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js')
     }
@@ -75,6 +76,18 @@ app.on('activate', () => {
   if (BrowserWindow.getAllWindows().length === 0) {
     createWindow();
   }
+});
+
+ipcMain.on('minimize', () => {
+  mainWindow?.minimize();
+});
+
+ipcMain.on('maximize', () => {
+  mainWindow?.maximize();
+});
+
+ipcMain.on('close', () => {
+  mainWindow?.close();
 });
 
 // In this file you can include the rest of your app's specific main process

@@ -6,7 +6,8 @@
       "jest" // 1
     ],
     "esModuleInterop": true, // 2
-    "emitDecoratorMetadata": true // 3
+    "emitDecoratorMetadata": true, // 3
+    "resolveJsonModule": true // 4
   },
   "include": [
     "projects/**/*.spec.ts",
