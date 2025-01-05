@@ -34,7 +34,7 @@ export class NavComponent {
     { link: 'contact', title: 'Contact' },
   ]
 
-  isHandset: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
+  isTablet: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Tablet)
     .pipe(
       map(result => result.matches),
       shareReplay()

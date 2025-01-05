@@ -2,10 +2,10 @@
   <mat-sidenav
     #drawer
     class="sidenav"
-    [ngClass]="{ hidden: !(isHandset | async) }"
-    [attr.role]="(isHandset | async) ? 'dialog' : 'navigation'"
-    [mode]="(isHandset | async) ? 'over' : 'side'"
-    [opened]="!(isHandset | async)"
+    [ngClass]="{ hidden: !(isTablet | async) }"
+    [attr.role]="(isTablet | async) ? 'dialog' : 'navigation'"
+    [mode]="(isTablet | async) ? 'over' : 'side'"
+    [opened]="!(isTablet | async)"
   >
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
@@ -22,8 +22,8 @@
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <mat-toolbar color="primary">
-      @if (isHandset | async) {
+    <mat-toolbar color="primary" class="draggable">
+      @if (isTablet | async) {
       <button
         type="button"
         aria-label="Toggle sidenav"
@@ -33,10 +33,8 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       }
-      <img src="logo.png" alt="Yoke logo" width="40rem" />
-      <span>Yoke</span>
 
-      @if (!(isHandset | async)) { @for (item of routes; track $index) {
+      @if (!(isTablet | async)) { @for (item of routes; track $index) {
       <a
         mat-button
         [routerLink]="item.link"
@@ -46,7 +44,14 @@
         {{ item.title }}
       </a>
       } }
+
       <span class="spacer"></span>
+
+      <img src="logo.png" alt="Yoke logo" width="40rem" />
+      <span>Yoke</span>
+      <span class="spacer"></span>
+
+      @if (!(isTablet | async)) {}
     </mat-toolbar>
     <ng-content></ng-content>
   </mat-sidenav-content>

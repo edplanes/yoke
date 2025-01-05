@@ -1,14 +1,14 @@
 import type { ForgeConfig } from '@electron-forge/shared-types';
 import { MakerSquirrel } from '@electron-forge/maker-squirrel';
+import { MakerZIP } from '@electron-forge/maker-zip';
 import { AutoUnpackNativesPlugin } from '@electron-forge/plugin-auto-unpack-natives';
-import { generate } from 'rxjs';
 
 const config: ForgeConfig = {
   packagerConfig: {
     asar: true,
   },
   rebuildConfig: {},
-  makers: [new MakerSquirrel({})],
+  makers: [new MakerSquirrel({}), new MakerZIP({})],
   plugins: [
     new AutoUnpackNativesPlugin({}),
   ],
@@ -26,3 +26,5 @@ const config: ForgeConfig = {
     }
   ],
 }
+
+export default config;
