@@ -33,7 +33,7 @@ jobs:
         uses: actions/setup-node@v4
 
       - name: Setup Yoke
-        run: npm ci
+        run: npm i
 
       - name: Build Yoke App
         run: npm run app:make
