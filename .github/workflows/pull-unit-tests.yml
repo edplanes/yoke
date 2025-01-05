@@ -26,4 +26,4 @@ jobs:
       - name: Setup Yoke
         run: npm i
       - name: Run Yoke Unit Tests
-        run: npm run web:test -- --browsers=ChromeHeadless --no-watch --no-progress
+        run: npm run test
